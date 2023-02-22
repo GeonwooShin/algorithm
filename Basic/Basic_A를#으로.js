@@ -10,5 +10,12 @@ function solution(word) {
   return answer;
 }
 
+function solution2(word) {
+  let answer;
+  answer = word.replace(/A/g, "#");
+  return answer;
+}
+
 let word = "BANANA";
 console.log(solution(word));
+console.log(solution2(word));
