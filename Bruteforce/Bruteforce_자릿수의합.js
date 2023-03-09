@@ -18,7 +18,7 @@ function solution(numArr) {
   return answer;
 }
 
-function solution2() {
+function solution2(numArr) {
   let answer;
   let max = 0;
   for (let num of numArr) {
