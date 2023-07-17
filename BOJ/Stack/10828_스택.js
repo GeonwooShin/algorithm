@@ -1,10 +1,5 @@
-// const fs = require('fs')
-// const [N, ...str] = fs.readFileSync('/dev/stdin').toString().trim().split('\n')
-
-const input =
-  "14\npush 1\npush 2\ntop\nsize\nempty\npop\npop\npop\nsize\nempty\npop\npush 3\nempty\ntop";
-
-const [N, ...str] = input.toString().trim().split("\n");
+const fs = require("fs");
+const [N, ...str] = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
 const arr = [];
 const result = [];
