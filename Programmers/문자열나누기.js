@@ -1,22 +1,21 @@
 function solution(s) {
-  let stack = [];
-  let count = 0;
-
-  for (let i = 0; i < s.length; i += 1) {
-    stack.push(s[i]);
-
-    const same = stack.filter((item) => item === stack[0]);
-    const notSame = stack.filter((item) => item !== stack[0]);
-
-    if (same.length === notSame.length) {
-      count += 1;
-      stack = [];
+  let answer = 0;
+  let hash = {};
+  let x = s[0];
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === x) {
+      if (hash.hasOwnProperty("firstLetter")) hash.firstLetter += 1;
+      else hash.firstLetter = 1;
+    } else if (s[i] !== x) {
+      if (hash.hasOwnProperty("diff")) hash.diff += 1;
+      else hash.diff = 1;
+    }
+    if (hash.firstLetter === hash.diff) {
+      answer += 1;
+      hash = {};
+      x = s[i + 1];
     }
   }
-
-  if (stack.length !== 0) {
-    count += 1;
-  }
-
-  return count;
+  if (hash.hasOwnProperty("firstLetter") && hash.firstLetter !== 0) answer++;
+  return answer;
 }
