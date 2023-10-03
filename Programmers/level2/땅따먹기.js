@@ -1,15 +1,16 @@
 function solution(land) {
-  let max = 0; //최대값
-  let idx = 0; //최대값의 인덱스
-
   for (let i = 1; i < land.length; i++) {
-    max = Math.max(...land[i - 1]);
-    idx = land[i - 1].indexOf(max);
-    land[i - 1][idx] = 0; //최대값을 0으로 재할당 => 동일한 인덱스일 때 2번째 최대값으로 처리
-    land[i] = land[i].map(
-      (v, j) => (v += j == idx ? Math.max(...land[i - 1]) : max)
-    );
+    land[i][0] += Math.max(land[i - 1][1], land[i - 1][2], land[i - 1][3]);
+    land[i][1] += Math.max(land[i - 1][0], land[i - 1][2], land[i - 1][3]);
+    land[i][2] += Math.max(land[i - 1][0], land[i - 1][1], land[i - 1][3]);
+    land[i][3] += Math.max(land[i - 1][0], land[i - 1][1], land[i - 1][2]);
   }
-
   return Math.max(...land[land.length - 1]);
 }
+
+const land = [
+  [1, 2, 3, 5],
+  [5, 6, 7, 8],
+  [4, 3, 2, 1],
+];
+console.log(solution(land));
