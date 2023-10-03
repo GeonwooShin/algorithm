@@ -9,3 +9,6 @@ function solution(numbers) {
   }
   return answer;
 }
+
+const numbers = [9, 1, 5, 3, 6, 2];
+console.log(solution(numbers));
