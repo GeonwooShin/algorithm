@@ -1,17 +1,16 @@
 function solution(order) {
   let answer = 0;
-  let boxNumber = 1;
+  let container = 1;
   const subContainer = [];
-  for (let i = 0; i < order.length; i++) {
-    let flag = true;
-    while (flag) {
-      if (order[i] === subContainer[subContainer.length - 1]) {
-        flag = false;
-        answer++;
+  for (let box of order) {
+    while (true) {
+      if (box === subContainer.at(-1)) {
         subContainer.pop();
+        answer++;
+        break;
       } else {
-        if (order[i] < boxNumber) return answer;
-        subContainer.push(boxNumber++);
+        if (box < container) return answer;
+        subContainer.push(container++);
       }
     }
   }
