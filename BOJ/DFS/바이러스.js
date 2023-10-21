@@ -12,8 +12,8 @@ let count = 0;
 
 const networks = str.map((v) => v.split(" ").map(Number));
 
-for (let i = 0; i < computerPairs; i++) {
-  const [from, to] = networks[i];
+for (let network of networks) {
+  const [from, to] = network;
   graph[from].push(to);
   graph[to].push(from);
 }
