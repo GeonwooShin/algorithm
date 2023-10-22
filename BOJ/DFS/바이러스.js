@@ -18,12 +18,12 @@ for (let network of networks) {
   graph[to].push(from);
 }
 
-function dfs(start) {
-  for (let i of graph[start]) {
-    if (!isVirus[i]) {
-      isVirus[i] = true;
+function dfs(order) {
+  for (let start of graph[order]) {
+    if (!isVirus[start]) {
+      isVirus[start] = true;
       count++;
-      dfs(i);
+      dfs(start);
     }
   }
 }
