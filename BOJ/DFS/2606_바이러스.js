@@ -7,7 +7,6 @@ const computerPairs = Number(m);
 
 const graph = Array.from(Array(computerNumber + 1), () => []);
 const isVirus = Array.from(Array(computerNumber + 1), () => false);
-isVirus[1] = true;
 let count = 0;
 
 const networks = str.map((v) => v.split(" ").map(Number));
