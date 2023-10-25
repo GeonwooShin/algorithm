@@ -2,9 +2,9 @@ function solution(S, E) {
   const distance = Array.from(Array(E + 1), () => 0);
   const ch = Array.from(Array(E + 1), () => 0);
   const queue = [S];
-  ch[S] = 1;
   while (queue.length) {
     const location = queue.shift();
+    ch[location] = 1;
     for (let move of [location - 1, location + 1, location + 5]) {
       if (move === E) return distance[location] + 1;
       if (move > 0 && move <= 10000 && ch[move] === 0) {
