@@ -7,7 +7,6 @@ const computerPairs = Number(m);
 
 const graph = Array.from(Array(computerNumber + 1), () => []);
 const isVirus = Array.from(Array(computerNumber + 1), () => false);
-isVirus[1] = true;
 let count = 0;
 
 const networks = str.map((v) => v.split(" ").map(Number));
@@ -18,12 +17,12 @@ for (let network of networks) {
   graph[to].push(from);
 }
 
-function dfs(order) {
-  for (let start of graph[order]) {
-    if (!isVirus[start]) {
-      isVirus[start] = true;
+function dfs(start) {
+  isVirus[start] = true;
+  for (let i of graph[start]) {
+    if (!isVirus[i]) {
       count++;
-      dfs(start);
+      dfs(i);
     }
   }
 }
