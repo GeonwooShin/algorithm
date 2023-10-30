@@ -12,15 +12,15 @@ function solution(numbers) {
   const set = new Set();
   function dfs(str) {
     for (let i = 0; i < n; i++) {
-      if (str !== "") {
-        if (isPrime(parseInt(str))) {
-          set.add(parseInt(str));
-        }
-      }
       if (ch[i] === 0) {
         ch[i] = 1;
         dfs(str + numbers[i]);
         ch[i] = 0;
+      }
+      if (str !== "") {
+        if (isPrime(parseInt(str))) {
+          set.add(parseInt(str));
+        }
       }
     }
   }
