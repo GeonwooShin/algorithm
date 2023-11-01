@@ -11,16 +11,16 @@ function solution(numbers) {
   const ch = Array.from({ length: n }, () => 0);
   const set = new Set();
   function dfs(str) {
+    if (str !== "") {
+      if (isPrime(parseInt(str))) {
+        set.add(parseInt(str));
+      }
+    }
     for (let i = 0; i < n; i++) {
       if (ch[i] === 0) {
         ch[i] = 1;
         dfs(str + numbers[i]);
         ch[i] = 0;
-      }
-      if (str !== "") {
-        if (isPrime(parseInt(str))) {
-          set.add(parseInt(str));
-        }
       }
     }
   }
@@ -28,4 +28,4 @@ function solution(numbers) {
   return set.size;
 }
 
-console.log(solution("011"));
+console.log(solution("17"));
