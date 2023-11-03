@@ -9,7 +9,14 @@ const isVisited = Array.from(Array(n), () => Array(n).fill(false));
 let count = 0;
 
 function dfs(y, x) {
-  if (apartment[y][x] === 1 && isVisited[y][x] === false) {
+  if (
+    x >= 0 &&
+    x < n &&
+    y >= 0 &&
+    y < n &&
+    apartment[y][x] === 1 &&
+    isVisited[y][x] === false
+  ) {
     isVisited[y][x] = true;
     count++;
     for (const move of [
@@ -19,9 +26,7 @@ function dfs(y, x) {
       [1, 0],
     ]) {
       const [newY, newX] = [y + move[1], x + move[0]];
-      if (newX >= 0 && newX < n && newY >= 0 && newY < n) {
-        dfs(newY, newX);
-      }
+      dfs(newY, newX);
     }
   }
 }
