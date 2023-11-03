@@ -7,15 +7,18 @@ const n = Number(a);
 const apartment = b.map((v) => v.split("").map(Number));
 const isVisited = Array.from(Array(n), () => Array(n).fill(false));
 let count = 0;
-const dx = [0, 0, -1, 1];
-const dy = [-1, 1, 0, 0];
 
 function dfs(y, x) {
   if (apartment[y][x] === 1 && isVisited[y][x] === false) {
     isVisited[y][x] = true;
     count++;
-    for (let i = 0; i < 4; i++) {
-      const [newY, newX] = [y + dy[i], x + dx[i]];
+    for (const move of [
+      [0, -1],
+      [0, 1],
+      [-1, 0],
+      [1, 0],
+    ]) {
+      const [newY, newX] = [y + move[1], x + move[0]];
       if (newX >= 0 && newX < n && newY >= 0 && newY < n) {
         dfs(newY, newX);
       }
@@ -26,9 +29,9 @@ function dfs(y, x) {
 for (let i = 0; i < n; i++) {
   for (let j = 0; j < n; j++) {
     if (apartment[i][j] === 1 && isVisited[i][j] === false) {
+      count = 0;
       dfs(i, j);
       answer.push(count);
-      count = 0;
     }
   }
 }
