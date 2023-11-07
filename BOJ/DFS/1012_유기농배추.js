@@ -19,7 +19,7 @@ for (let i = 0; i < T; i++) {
   const location = b
     .slice(G + 1, G + K + 1)
     .map((v) => v.split(" ").map(Number));
-  const isVisited = Array.from(Array(N), () => Array(M).fill(false));
+  const isVisited = new Set();
   const field = Array.from(Array(N), () => Array(M).fill(0));
   location.forEach(([x, y]) => {
     field[y][x] = 1;
@@ -31,9 +31,9 @@ for (let i = 0; i < T; i++) {
       y >= 0 &&
       y < N &&
       field[y][x] === 1 &&
-      !isVisited[y][x]
+      !isVisited.has(`${x}-${y}`)
     ) {
-      isVisited[y][x] = true;
+      isVisited.add(`${x}-${y}`);
       for (const move of distance) {
         const [newY, newX] = [y + move[0], x + move[1]];
         dfs(newY, newX);
@@ -43,7 +43,7 @@ for (let i = 0; i < T; i++) {
 
   for (let i = 0; i < N; i++) {
     for (let j = 0; j < M; j++) {
-      if (field[i][j] === 1 && !isVisited[i][j]) {
+      if (field[i][j] === 1 && !isVisited.has(`${j}-${i}`)) {
         dfs(i, j);
         answer++;
       }
