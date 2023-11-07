@@ -4,9 +4,9 @@ const N = input.toString().trim().split("-");
 let answer = [];
 for (let i of N) {
   let num = 0;
-  const plusArr = i.split("+");
+  const plusArr = i.split("+").map(Number);
   for (let j of plusArr) {
-    num += Number(j);
+    num += j;
   }
   answer.push(num);
 }
