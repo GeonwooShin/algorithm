@@ -7,24 +7,22 @@ function isPrime(num) {
 }
 
 function solution(numbers) {
-  const n = numbers.length;
-  const ch = Array.from({ length: n }, () => 0);
+  const numberArr = numbers.split("");
   const set = new Set();
-  function dfs(str) {
-    if (str !== "") {
-      if (isPrime(parseInt(str))) {
-        set.add(parseInt(str));
-      }
-    }
-    for (let i = 0; i < n; i++) {
-      if (ch[i] === 0) {
-        ch[i] = 1;
-        dfs(str + numbers[i]);
-        ch[i] = 0;
+
+  function permutations(array, selected) {
+    if (array.length >= 1) {
+      for (let i = 0; i < array.length; i++) {
+        const newFixed = selected + array[i];
+        const temp = [...array];
+        temp.splice(i, 1);
+        if (isPrime(Number(newFixed))) set.add(newFixed);
+        permutations(temp, newFixed);
       }
     }
   }
-  dfs("");
+
+  permutations(numberArr, "");
   return set.size;
 }
 
