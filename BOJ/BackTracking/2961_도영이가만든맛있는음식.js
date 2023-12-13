@@ -29,4 +29,5 @@ function combination(depth, start) {
 }
 
 combination(0, 0);
+
 console.log(answer);
