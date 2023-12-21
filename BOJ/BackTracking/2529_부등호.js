@@ -30,6 +30,7 @@ function DFS(depth) {
 }
 
 DFS(0);
+
 console.log(
   String(Math.max(...answer)) +
     "\n" +
